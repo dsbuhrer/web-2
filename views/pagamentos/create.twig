@@ -1,0 +1,38 @@
+{% extends "layouts/site.twig" %}
+{% block content %}
+  <section class="home-section">
+        <div class="container pt-5">
+            <h2>Métodos de pagamentos</h2>
+            <form method="post" >
+                <div class="row">
+                    <div class="mb-3">
+                        <label for="select" class="form-label">Nome</label>
+						{% if pagamento is defined %}
+							<input type="number" id="id" value="{{pagamento.id}}" readonly hidden name="id" class="form-control" required>
+							<input type="text" class="form-control" name="nome" value="{{pagamento.nome}}" required>
+						{% else %}
+							<input type="text" class="form-control" name="nome"value="" required>
+						{% endif %}
+                    </div>
+                </div>
+
+
+				{% if success ==  true %}
+					<div class='alert alert-success' role='alert'>
+						Método de pagamentos criado com sucesso!
+					</div>
+				{% endif %}
+                {% if success == false and message is defined %}
+
+					<div class="alert alert-danger">
+						{{ message }}
+					</div>
+                {% endif %}
+                <a href="/pagamentos" class="btn btn-primary">Voltar</a>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+
+    </section>
+
+{% endblock %}

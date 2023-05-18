@@ -1,0 +1,36 @@
+{% extends "layouts/site.twig" %}
+{% block content %}
+  <section class="home-section">
+        <div class="container pt-5">
+            <h2>Categorias</h2>
+            <form method="post" >
+                <div class="row">
+					{% if categoria is defined %}
+                    	<div class="mb-3 card-delete">
+							<h3>Deletar</h3>
+    						<p>Tem certeza que deseja deletar a categoria <b>{{categoria.nome}}</b> #{{categoria.id}}</p>
+                			<button type="submit" class="btn btn-primary">Deletar</button>
+
+                		</div>
+					{% endif %}
+                </div>
+
+
+				{% if success ==  true %}
+					<div class='alert alert-success' role='alert'>
+						Categoria deletada com sucesso!
+					</div>
+				{% endif %}
+                {% if success == false and message is defined %}
+
+					<div class="alert alert-danger">
+						{{ message }}
+					</div>
+                {% endif %}
+                <a href="/categorias" class="btn btn-primary">Voltar</a>
+            </form>
+        </div>
+
+    </section>
+
+{% endblock %}

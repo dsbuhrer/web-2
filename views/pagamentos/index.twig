@@ -1,0 +1,73 @@
+{% extends "layouts/site.twig" %}
+
+{% block content %}
+	{% if success ==  true %}
+	  	<div class="alert alert-success"
+	        style="margin: 0 auto;position: absolute;left: 0;right: 0;top: 50px;/* bottom: 0; */z-index: 9999;width: fit-content;">
+			Alterado com sucesso!
+		</div>
+	{% endif %}
+	{% if success == false and message is defined %}
+		<div class="alert alert-danger" style="margin: 0 auto;position: absolute;left: 0;right: 0;top: 50px;/* bottom: 0; */z-index: 9999;width: fit-content;">
+			{{ message }}
+		</div>
+	{% endif %}
+	    <section class="home-section">
+        <div class="container">
+            <div class="table-responsive">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h2><b style="color:#fff">Listagem de Métodos de pagamentos</b></h2>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="{{url}}/pagamentos/criar" class="btn btn-success"><i
+                                        class="material-icons">&#xE147;</i> <span>ADICIONAR </span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped table-hover">
+					{% if pagamentos %}
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Descrição</th>
+                                <th>Ações</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pagamento in pagamentos %}
+                            <tr>
+                                <td>{{ pagamento.id}}</td>
+                                <td>{{ pagamento.nome}}</td>
+                                <td>{{ pagamento.descricao}}</td>
+                                <td>
+                                    <a href="/pagamentos/editar/{{ pagamento.id}}" class="edit"><i
+                                            class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
+                                    <a href="/pagamentos/excluir/{{ pagamento.id}}" class="delete"><i
+                                            class="material-icons" data-toggle="tooltip"
+                                            title="Deletar">&#xE872;</i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+		{% else %}
+
+        <div class="text-center mt-4">
+            <h4> Nenhuma pagamento cadastrada</h4>
+        </div>
+        {% endif %}
+
+
+    </section>
+
+</div></div>{% endblock %}

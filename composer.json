@@ -1,0 +1,20 @@
+{
+    "name": "dsbuhrer/web-2",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\":"./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Davi",
+            "email": "dsbuhrer@gmail.com"
+        }
+    ],
+    "require": {
+        "pecee/simple-router": "4.3.7.2",
+        "php-di/php-di": "^6.4",
+        "twig/twig": "^3.0"
+    }
+}

@@ -1,0 +1,75 @@
+{% extends "layouts/site.twig" %}
+
+{% block content %}
+<div class="container p-5">
+        <input type="checkbox" id="flip">
+        <div class="cover">
+            <div class="front">
+                <img class="backImg" src="../assets/images/img-login.jpg" alt="">
+            </div>
+        </div>
+        <div class="forms">
+            <div class="form-content">
+                <div class="login-form">
+                    <div class="title">Login</div>
+                    <form method="post" action="login">
+                        <div class="input-boxes">
+                            <div class="input-box">
+                                <i class="fas fa-user"></i>
+                                <input type="text" name="usuario" placeholder="Insira seu nome">
+                                
+
+                            </div>
+                            <div class="input-box">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="passwordLogin" name="senha" placeholder="Insira sua senha">
+                                <i class="fa-solid fa-eye eyes  icon" onclick="hideEye(this)"></i>
+                                <i class="fa-solid fa-eye-slash eyes  d-none icon" onclick="hideEye(this)"></i>
+                            </div>
+                            {# {% error %} #}
+                            {% if error %}
+                            <div class="alert alert-danger">
+                               {{ error }}
+                            </div>
+                            {% endif  %}
+
+                            {# <?php endif; ?>
+
+                            <?php if ($erro_pass) : ?>
+                            <div class="alert alert-danger">
+                                Senha vazia!
+                            </div>
+                            <?php endif; ?>
+
+                            <?php if ($erro) : ?>
+                            <div class="alert alert-danger">
+                                Usuário ou senha inválidos!
+                            </div>
+                            <?php endif; ?> #}
+
+                            <div class="button input-box">
+                                <input type="submit">
+                            </div>
+                        </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    var eyes = document.getElementsByClassName("eyes");
+    var pass = document.getElementById("passwordLogin");
+
+    function hideEye(element) {
+        eyes[0].classList.toggle("d-none");
+        eyes[1].classList.toggle("d-none");
+        if (pass.type === "password") {
+            pass.type = "text";
+        } else {
+            pass.type = "password";
+        }
+    }
+
+    </script>
+{% endblock %}
