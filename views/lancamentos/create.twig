@@ -9,7 +9,7 @@
  					<div class="col">
                         <div class="mb-3">
                             <label for="categoria_id" class="form-label">Categoria de transação</label>
-                            <select class="form-select" name="categoria_id" id="categoria_id" 
+                            <select required class="form-select" name="categoria_id" id="categoria_id" 
 							{% if not categorias is defined %}
 								disabled
 							{% endif %}
@@ -48,7 +48,7 @@
  					<div class="col">
                         <div class="mb-3">
                             <label for="pagamento_id" class="form-label">Método de pagamento</label>
-                            <select class="form-select" name="pagamento_id" id="pagamento_id" 
+                            <select required class="form-select" name="pagamento_id" id="pagamento_id" 
 							{% if not pagamentos is defined %}
 								disabled
 							{% endif %}
@@ -88,7 +88,7 @@
 					<div class="mb-3">
                     	<label for="descricao" class="form-label">Descrição</label>
                     	<textarea class="form-control" name="descricao" id="descricao"
-                    	    rows="3">{% if lancamento.descricao is defined %}{{lancamento.descricao}}{% else %}{% endif %}</textarea>
+                    	    rows="3" required>{% if lancamento.descricao is defined %}{{lancamento.descricao}}{% else %}{% endif %}</textarea>
                 	</div>
  					<fieldset class="row mb-3">
                     	<legend class="col-form-label col-sm-2 pt-0">Tipo de transação</legend>

@@ -49,7 +49,7 @@ class LancamentoController{
         $this->view('lancamentos.delete',["lancamento"=>$lancamento]);
     }
 
-    public function update()
+    public function update($id)
     {
         try {
             $cart = new Lancamento(
@@ -59,26 +59,29 @@ class LancamentoController{
                 input()->post('descricao')->getValue(),
                 input()->post('tipo')->getValue(),
                 input()->post('pagamento_id')->getValue(),
-                input()->post('categoria_id')->getValue(),
+                input()->post('categoria_id')->getValue()
             );
 
             Lancamento::validate($cart);
 
             $this->service->update($cart);
 
-            $lancamentos = $this->service->get();
+            $lancamento = $this->service->find($id);
             $pagamentos = $this->pagamento_service->get();
             $categorias = $this->categoria_service->get();
-            $this->view('lancamentos.index',["lancamentos"=>$lancamentos,"pagamentos"=>$pagamentos,"categorias"=>$categorias]);
-            
+            $this->view('lancamentos.create',["lancamento"=>$lancamento,"pagamentos"=>$pagamentos,"categorias"=>$categorias,"success"=> true,"message"=> "Sucesso!"]);
+
         } catch (Exception $e) {
             $message = $e->getMessage();
-            $this->view('lancamentos.create',["success"=> false,"message"=> $message]);
+            Logger::log($lancamento->descricao);
+            $lancamento = $this->service->find($id);
+            $pagamentos = $this->pagamento_service->get();
+            $categorias = $this->categoria_service->get();
+            $this->view('lancamentos.create',["lancamento"=>$lancamento,"pagamentos"=>$pagamentos,"categorias"=>$categorias,"success"=> false,"message"=> $message]);
         }
     }
     public function create()
     {
-
         try {
             $cart = new Lancamento(
                 null,
@@ -87,9 +90,9 @@ class LancamentoController{
                 input()->post('descricao')->getValue(),
                 input()->post('tipo')->getValue(),
                 input()->post('pagamento_id')->getValue(),
-                input()->post('categoria_id')->getValue(),
+                input()->post('categoria_id')->getValue()
             );
-
+        
             Lancamento::validate($cart);
 
             $this->service->store($cart);

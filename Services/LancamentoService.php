@@ -23,8 +23,7 @@ class LancamentoService
         try {
             $this->db->beginTransaction();
 
-            $query = $this->db->prepare("INSERT INTO lancamentos (valor,data_lancamento,descricao,tipo,pagamento_id,categoria_id)
-            VALUES (:valor,:data_lancamento,:descricao,:tipo,:pagamento_id,:categoria_id);");
+            $query = $this->db->prepare("INSERT INTO lancamentos (valor,data_lancamento,descricao,tipo,pagamento_id,categoria_id) VALUES (:valor,:data_lancamento,:descricao,:tipo,:pagamento_id,:categoria_id);");
 
             $query->bindParam(':valor', $model->valor, PDO::PARAM_STR);
             $query->bindParam(':data_lancamento', $model->data_lancamento, PDO::PARAM_STR);

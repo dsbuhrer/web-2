@@ -43,6 +43,6 @@ class Lancamento
             throw new Exception("Tipo de transação é obrigatório");
         } else if (!isset($lancamento->categoria_id) || $lancamento->categoria_id =="") {
             throw new Exception("Tipo de transação é obrigatório");
-        } 
+        }
     }
 }
