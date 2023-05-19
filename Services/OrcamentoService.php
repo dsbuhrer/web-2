@@ -45,8 +45,6 @@ class OrcamentoService
         try {
             $this->db->beginTransaction();
 
-            Logger::log($model->id);
-
             $query = $this->db->prepare("UPDATE orcamentos SET `name` = :name,`value` = :value, `option` = :option WHERE `id` = :id;");
 
             $query->bindParam(':name', $model->name, PDO::PARAM_STR);

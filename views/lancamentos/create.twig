@@ -109,9 +109,14 @@
                 </div>
 
 
-				{% if success ==  true %}
+				{% if success ==  true and message is defined %}
+				<div class='alert alert-success' role='alert'>
+						{{message}}  
+					</div>
+				{% elseif success ==  true %}
 					<div class='alert alert-success' role='alert'>
 						Lançamento criado com sucesso!
+
 					</div>
 				{% endif %}
                 {% if success == false and message is defined %}

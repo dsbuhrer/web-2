@@ -48,8 +48,6 @@ class LancamentoService
         try {
             $this->db->beginTransaction();
 
-            Logger::log($model->id);
-
             $query = $this->db->prepare("UPDATE lancamentos SET `valor` = :valor, `data_lancamento` = :data_lancamento, `descricao` = :descricao, `tipo` = :tipo, `pagamento_id` = :pagamento_id, `categoria_id` = :categoria_id WHERE `id` = :id;");
 
             $query->bindParam(':valor', $model->valor, PDO::PARAM_STR);
@@ -79,12 +77,10 @@ class LancamentoService
             $query->execute();
 
             $result = $query->fetchAll();
-            Logger::log("get lancamento");
 
             $result = array_map(function ($lancamento) {
                 return new Lancamento($lancamento["id"], $lancamento["valor"], $lancamento["data_lancamento"], $lancamento["descricao"], $lancamento["tipo"], $lancamento["pagamento_id"], $lancamento["categoria_id"]);
             }, $result);
-            Logger::log("get result");
 
             $this->db->commit();
         } catch (\Throwable $e) {

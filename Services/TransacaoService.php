@@ -48,8 +48,6 @@ class TransacaoService
         try {
             $this->db->beginTransaction();
 
-            Logger::log($model->id);
-
             $query = $this->db->prepare("UPDATE transacoes SET `name` = :name,`value` = :value, `option` = :option, `date` = :date WHERE `id` = :id;");
 
             $query->bindParam(':name', $model->name, PDO::PARAM_STR);

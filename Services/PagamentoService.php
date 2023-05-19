@@ -44,8 +44,6 @@ class PagamentoService
         try {
             $this->db->beginTransaction();
 
-            Logger::log($model->id);
-
             $query = $this->db->prepare("UPDATE pagamentos SET `nome` = :nome WHERE `id` = :id;");
 
             $query->bindParam(':nome', $model->nome, PDO::PARAM_STR);

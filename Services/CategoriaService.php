@@ -45,8 +45,6 @@ class CategoriaService
         try {
             $this->db->beginTransaction();
 
-            Logger::log($model->id);
-
             $query = $this->db->prepare("UPDATE categorias SET `nome` = :nome,`descricao` = :descricao WHERE `id` = :id;");
 
             $query->bindParam(':nome', $model->nome, PDO::PARAM_STR);

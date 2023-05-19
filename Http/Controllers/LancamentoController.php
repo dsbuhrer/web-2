@@ -69,11 +69,10 @@ class LancamentoController{
             $lancamento = $this->service->find($id);
             $pagamentos = $this->pagamento_service->get();
             $categorias = $this->categoria_service->get();
-            $this->view('lancamentos.create',["lancamento"=>$lancamento,"pagamentos"=>$pagamentos,"categorias"=>$categorias,"success"=> true,"message"=> "Sucesso!"]);
+            $this->view('lancamentos.create',["lancamento"=>$lancamento,"pagamentos"=>$pagamentos,"categorias"=>$categorias,"success"=> true,"message"=> "Alterado com sucesso!"]);
 
         } catch (Exception $e) {
             $message = $e->getMessage();
-            Logger::log($lancamento->descricao);
             $lancamento = $this->service->find($id);
             $pagamentos = $this->pagamento_service->get();
             $categorias = $this->categoria_service->get();
@@ -97,11 +96,16 @@ class LancamentoController{
 
             $this->service->store($cart);
 
-           $this->view('lancamentos.create',["success"=> true]);
+            $pagamentos = $this->pagamento_service->get();
+            $categorias = $this->categoria_service->get();
+           $this->view('lancamentos.create',["pagamentos"=>$pagamentos,"categorias"=>$categorias,"success"=> true]);
             
         } catch (Exception $e) {
             $message = $e->getMessage();
-            $this->view('lancamentos.create',["success"=> false,"message"=> $message]);
+            $pagamentos = $this->pagamento_service->get();
+            $categorias = $this->categoria_service->get();
+
+            $this->view('lancamentos.create',["pagamentos"=>$pagamentos,"categorias"=>$categorias,"success"=> false,"message"=> $message]);
         }
     }
     public function delete($id)

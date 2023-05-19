@@ -6,7 +6,7 @@ use PDO;
 
 define('MYSQL_HOST', '127.0.0.1');
 define('MYSQL_USER', 'root');
-define('MYSQL_PASSWORD', 'Auth123!@#');
+define('MYSQL_PASSWORD', '');
 define('MYSQL_DB_NAME', 'fluxo');
 
 class DatabaseController
